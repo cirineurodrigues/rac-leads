@@ -16,5 +16,5 @@ def all_leads():
 def index():
     return "<h1>Welcome to Rac Leads API</h1>"
 
-if __name__ == '__main__':
+if __name__ == '__app__':
     app.run()
