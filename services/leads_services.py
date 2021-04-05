@@ -8,6 +8,10 @@ class LeadsServices:
 
     @staticmethod
     def append_csv(lead):
-        with open('leads,csv', 'a') as f:
+        with open('leads.csv', 'a') as f:
             writer = csv.DictWriter(f, fieldnames=['nome', 'telefone', 'email', 'profissao'])
             writer.writerow(lead)
+
+    @staticmethod
+    def register(json):
+        LeadsServices.append_csv(json)

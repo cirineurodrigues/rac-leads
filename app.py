@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request
 from http import HTTPStatus
 
 from services.leads_services import LeadsServices
@@ -11,6 +11,14 @@ def all_leads():
         'status': 'Ok!',
         'data': LeadsServices.read_csv()
     }
+
+@app.route('/register', methods=['POST'])
+def register_lead():
+    req = request.get_json()
+    LeadsServices.register(req)
+
+    return 'Lead cadastrado com sucesso', HTTPStatus.OK
+
 
 @app.route('/')
 def index():
