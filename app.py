@@ -15,6 +15,3 @@ def all_leads():
 @app.route('/')
 def index():
     return "<h1>Welcome to Rac Leads API</h1>"
-
-if __name__ == '__app__':
-    app.run()
