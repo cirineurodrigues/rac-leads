@@ -6,7 +6,8 @@ from handlers.http_handlers import success_request, created_request, unprocessab
 
 app = Flask(__name__)
 
-cors = CORS(app, resource={r"/*":{"origins": "*"}})
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 @app.route('/leads', methods=['GET'])
 def all_leads():
