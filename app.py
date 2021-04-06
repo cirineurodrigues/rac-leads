@@ -1,25 +1,25 @@
 from flask import Flask, request
-from http import HTTPStatus
 
 from services.leads_services import LeadsServices
+from handlers.http_handlers import success_request, created_request, unprocessable_request
 
 app = Flask(__name__)
 
 @app.route('/leads', methods=['GET'])
 def all_leads():
-    return {
-        'status': 'Ok!',
-        'data': LeadsServices.read_csv()
-    }
+   return success_request(LeadsServices.read_csv())
 
 @app.route('/register', methods=['POST'])
 def register_lead():
     req = request.get_json()
-    LeadsServices.register(req)
+    register = LeadsServices.register(req)
 
-    return 'Lead cadastrado com sucesso', HTTPStatus.OK
+    if register:
+        return created_request()
 
-
+    else:
+        return unprocessable_request()
+    
 @app.route('/')
 def index():
     return "<h1>Welcome to Rac Leads API</h1>"
