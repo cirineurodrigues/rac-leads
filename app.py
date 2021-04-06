@@ -1,5 +1,5 @@
 from flask import Flask, request
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 
 from services.leads_services import LeadsServices
 from handlers.http_handlers import success_request, created_request, unprocessable_request
