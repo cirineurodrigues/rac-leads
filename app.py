@@ -1,9 +1,12 @@
 from flask import Flask, request
+from flask_cors = CORS
 
 from services.leads_services import LeadsServices
 from handlers.http_handlers import success_request, created_request, unprocessable_request
 
 app = Flask(__name__)
+
+cors = CORS(app, resource={r"/*":{"origins": "*"}})
 
 @app.route('/leads', methods=['GET'])
 def all_leads():
