@@ -10,10 +10,12 @@ cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
 @app.route('/leads', methods=['GET'])
+@cross_origin()
 def all_leads():
    return success_request(LeadsServices.read_csv())
 
 @app.route('/register', methods=['POST'])
+@cross_origin()
 def register_lead():
     req = request.get_json()
     register = LeadsServices.register(req)
@@ -25,5 +27,6 @@ def register_lead():
         return unprocessable_request()
     
 @app.route('/')
+@cross_origin()
 def index():
     return "<h1>Welcome to Rac Leads API</h1>"
